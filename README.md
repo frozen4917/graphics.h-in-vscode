@@ -67,19 +67,6 @@ Install [Visual Studio Code](https://code.visualstudio.com/download).
 2. Copy/cut the `graphics.h` and `winbgim.h` files that you just downloaded and paste them in the `C:\MinGW\include` folder.
 3. Copy/cut the `libbgi.a` file that you just downloaded and paste it in the `C:\MinGW\lib` folder.
 
-> [!NOTE]
-> **Alternative method:** Instead of installing the files to MinGW globally, you can keep the files in your project folder:
-> ```
-> your-project/
-> ├── lib/
-> │    └── libbgi.a
-> ├── include/
-> │    ├── graphics.h
-> │    └── winbgim.h
-> └── main.c
-> ```
-> If you do this, use the [`tasks/LocalFlags-tasks.json`](tasks/LocalFlags-tasks.json) file in **Step 6**, which uses the `-Llib -Iinclude` flags.
-
 ---
 
 ### 6. Set Up Build Task in VS Code
@@ -87,7 +74,7 @@ Compiling a program that uses graphics.h requires multiple compiler flags. We'll
 
 1. Create a `.vscode` folder in your project directory if you do not have one already.
 2. Add a file `tasks.json` in the `.vscode` folder if it doesn't exist already.
-3. Copy the contents from the [`tasks/Normal-tasks.json`](tasks/Normal-tasks.json) file in this repository into your `tasks.json`.
+3. Copy the contents from the [`tasks.json`](tasks.json) file in this repository into your `tasks.json`.
 
 > [!WARNING]
 > If you already have a configured task, back up your current `tasks.json` first, then carefully merge the new task. Don't overwrite existing tasks.
@@ -102,15 +89,8 @@ Compiling a program that uses graphics.h requires multiple compiler flags. We'll
 >  }
 > ```
 
-> [!TIP]
-> If you used the `your-project/lib/` and `your-project/include/` method as mentioned in the previous step, add the following flags to your "args" array:
-> - `-Llib`
-> - `-Iinclude`
-> 
-> Or you can copy the contents from the [`tasks/LocalFlags-tasks.json`](tasks/LocalFlags-tasks.json) file instead.
-
 > [!NOTE]
-> The build task outputs `a.exe` in your projec's root directory. You can change the output filename in the `"args"` array by modifying the `-o` flag.
+> The build task outputs `a.exe` in your project's root directory. You can change the output filename in the `"args"` array by modifying the `-o` flag.
 
 ---
 
@@ -128,13 +108,12 @@ Compiling a program that uses graphics.h requires multiple compiler flags. We'll
 **"gcc is not recognized"**
 > - Restart Command Prompt after setting environment variables. If it still fails, verify `C:\MinGW\bin` contains `gcc.exe`.
 
-**Linker errors like "undefined reference to `_initgraph`"**
+**Linker errors like "undefined reference to `initgraph`"**
 > - Ensure `libbgi.a` bitness matches your compiler (run `gcc -v` to verify).
-> - Verify `libbgi.a` is in `C:\MinGW\lib` or in your project's `lib/` folder if using the alternative method.
+> - Verify `libbgi.a` is in `C:\MinGW\lib`.
 
 **"libbgi.a not found"**
 > - Check that the path in `tasks.json` points to the correct location.
-> - If using the alternative method, verify `lib/libbgi.a` exists in your project root.
 
 **"Windows Defender blocked the application"**
 > - Click **Allow** or add the executable to your exclusions. Restart your terminal if needed.
