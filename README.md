@@ -16,8 +16,9 @@ In this repository, I'll show you how to run TurboC-style graphics.h program in 
 
 # Steps
 ### 1. Install VS Code
-Install [Visual Studio Code](https://code.visualstudio.com/download).
-Install [C/C++ Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) as well.
+1. Install [Visual Studio Code](https://code.visualstudio.com/download).
+2. Install [C/C++ Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) as well.
+
 ---
 
 ### 2. Install MinGW
